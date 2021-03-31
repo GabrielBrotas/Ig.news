@@ -9,7 +9,7 @@ type User = {
         id: string;
     },
     data: {
-        stripe_custumer_id: string
+        stripe_customer_id: string
     }
 }
 
@@ -30,7 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         )
 
         // verificar se ele já tem um custumerId ( se ele ja fez o subscribe antes )
-        let customerId = user.data.stripe_custumer_id
+        let customerId = user.data.stripe_customer_id
         
         // se nao, vamos fazer
         if(!customerId) {
@@ -45,7 +45,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     q.Ref(q.Collection('users'), user.ref.id ),
                     {
                         data: {
-                            stripe_custumer_id: stripeCostumer.id
+                            stripe_customer_id: stripeCostumer.id
                         }
                     }
                 )
